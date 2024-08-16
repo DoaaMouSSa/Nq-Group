@@ -1,0 +1,76 @@
+/* about */
+
+.uli li a{
+    color: #276597 !important;
+}
+.section-title{
+    color:rgb(45, 89, 124);
+    margin-bottom: 20px;
+}
+section{
+    text-align: center;
+    padding: 40px 0 ;
+}
+#sec-1{
+    padding: 60px 0;
+    background-color: rgba(238, 238, 238,.6);
+   
+}
+#sec-1 li{
+    list-style: none;
+    opacity: .7;
+    margin: 10px 0;
+}
+nav li a{
+    color: #eee !important;
+}
+ul{
+    padding: 0;
+}
+.fas{
+    margin: 0 10px;
+    color: #007bff;
+}
+img{
+    max-width: 100%;
+}
+.team{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 0;
+    margin: 10px ;
+    text-align: start;
+}
+
+.circle-bg:after {
+width: 300px;
+height: 300px;
+content: "";
+z-index: -1;
+border-radius: 50%;
+position: absolute;
+bottom: 60px;
+right: calc(68% - 300px);
+background: rgba(170, 170, 170,.1);
+}
+.team .text{
+    padding: 20px 20px;
+}
+.team small{
+    color: #aaa;
+    margin: 20px 0;
+    font-size: 18px;
+}
+.team a{
+    background-color: rgb(45, 89, 124);
+    color: #fff;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 10px;
+    line-height: 25px;
+}
+.team h5{
+    font-size: 20px;
+    font-weight: 700;
+}
+
