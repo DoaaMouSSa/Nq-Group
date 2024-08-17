@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('leave_balance')->default(0);
             $table->string('employee_code')->unique();
             $table->string('name');
-            $table->date('today_date')->default(DB::raw('CURRENT_DATE'));
             $table->string('job_title');
             $table->string('department');
             $table->string('direct_manager')->nullable();
