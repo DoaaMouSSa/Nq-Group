@@ -9,7 +9,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::all();
-        return view('admin.employees.list', compact('employees'));
+        return view('admin.employee.index', compact('employees'));
     }
 
 
@@ -34,7 +34,7 @@ class EmployeeController extends Controller
         ]);
 
         $employee = Employee::create($data);
-        return redirect('admin/employee')->with('success', 'Insert Data Success');
+        return redirect('admin/employee/index')->with('success', 'Insert Data Success');
     }
     public function show($id)
     {
@@ -46,7 +46,7 @@ class EmployeeController extends Controller
     {
         $employee=Employee::get();
         $employee=Employee::findOrFail($id);
-        return view('admin.employees.editEmployee', compact('employees'));
+        return view('admin.employees.edit', compact('employees'));
     }
     public function update(Request $request, string $id)
     {
@@ -68,13 +68,13 @@ class EmployeeController extends Controller
             'mission_authorization' => 'sometimes|boolean',
         ]);
         Employee::where('id', $id)->update($data);
-        return redirect('admin/employee')->with('success', 'Insert Data Success');
+        return redirect('admin/employee/index')->with('success', 'Insert Data Success');
     }
 
     public function destroy($id)
     {
         Employee::where('id', $id)->delete();
-        return redirect('admin/employees')->with('danger', 'Delete Data Success');
+        return redirect('admin/employee/index')->with('danger', 'Delete Data Success');
 
     }
 
