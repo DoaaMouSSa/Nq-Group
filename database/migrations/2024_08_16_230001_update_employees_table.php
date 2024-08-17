@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('employees', function (Blueprint $table) {
+            $table->id();
             $table->date('date_of_appointment')->nullable();
             $table->integer('leave_balance')->default(0);
             $table->string('employee_code')->unique();
@@ -35,24 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('employees', function (Blueprint $table) {
-            $table->dropColumn([
-                'date_of_appointment',
-                'leave_balance',
-                'employee_code',
-                'name',
-                'today_date',
-                'job_title',
-                'department',
-                'direct_manager',
-                'allowed_loan_limit',
-                'delay_authorization',
-                'early_leave_permission',
-                'leave_request',
-                'loan_request',
-                'salary_statement_request',
-                'mission_authorization'
-            ]);
-        });
+
     }
 };

@@ -10,6 +10,7 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
+
         'date_of_appointment',
         'leave_balance',
         'employee_code',
@@ -40,12 +41,5 @@ class Employee extends Model
         'mission_authorization' => 'boolean',
     ];
 
-    // Accessor for the allowed loan limit
-    public function getAllowedLoanLimitAttribute()
-    {
-        if ($this->today_date->day >= 21) {
-            return $this->salary * 0.25;
-        }
-        return 0;
-    }
+
 }
