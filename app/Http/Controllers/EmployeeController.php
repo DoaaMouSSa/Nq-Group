@@ -6,12 +6,23 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+
     public function index()
     {
-        $employees = Employee::all();
-        return view('admin.employee.index', compact('employees'));
+            //     //$employees = Employee::all();
+         //, compact('employees'));
+        return view('admin.employees.index');
     }
 
+    public function create()
+    {
+        return view('admin.employees.create');
+    }
+
+    public function edit($id)
+    {
+        return view('admin.employees.edit', ['id' => $id]);
+    }
 
     public function store(Request $request)
     {
@@ -36,39 +47,11 @@ class EmployeeController extends Controller
         $employee = Employee::create($data);
         return redirect('admin/employee/index')->with('success', 'Insert Data Success');
     }
+
     public function show($id)
     {
         $employee = Employee::findOrFail($id);
         return view('single', compact('employee'));
-    }
-
-    public function edit(string $id)
-    {
-        $employee=Employee::get();
-        $employee=Employee::findOrFail($id);
-        return view('admin.employees.edit', compact('employees'));
-    }
-    public function update(Request $request, string $id)
-    {
-        $data=$request->validate([
-            'date_of_appointment' => 'sometimes|date',
-            'leave_balance' => 'sometimes|integer',
-            'employee_code' => 'sometimes|string|unique:employees,employee_code,' . $id,
-            'name' => 'sometimes|string',
-            'today_date' => 'sometimes|date',
-            'job_title' => 'sometimes|string',
-            'department' => 'sometimes|string',
-            'direct_manager' => 'nullable|string',
-            'allowed_loan_limit' => 'nullable|numeric',
-            'delay_authorization' => 'sometimes|boolean',
-            'early_leave_permission' => 'sometimes|boolean',
-            'leave_request' => 'sometimes|boolean',
-            'loan_request' => 'sometimes|boolean',
-            'salary_statement_request' => 'sometimes|boolean',
-            'mission_authorization' => 'sometimes|boolean',
-        ]);
-        Employee::where('id', $id)->update($data);
-        return redirect('admin/employee/index')->with('success', 'Insert Data Success');
     }
 
     public function destroy($id)

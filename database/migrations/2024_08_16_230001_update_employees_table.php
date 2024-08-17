@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('loan_request')->default(false);
             $table->boolean('salary_statement_request')->default(false);
             $table->boolean('mission_authorization')->default(false);
+            $table->timestamps();
         });
     }
 

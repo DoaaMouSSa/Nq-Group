@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,9 +17,9 @@ Route::get('contact', function () {
 Route::get('about', function () {
     return view('aboutUS');
 })->name('about');
-    Route::prefix('employees')->group(function () {
-        Route::get('/', [EmployeeController::class, 'get']);
-        Route::get('{id}', [EmployeeController::class, 'getById']);
-        Route::put('{id}', [EmployeeController::class, 'update']);
-        Route::delete('{id}', [EmployeeController::class, 'delete']);
+
+// Admin routes
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
 });
