@@ -10,8 +10,7 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date_of_appointment',
-        'leave_balance',
+
         'employee_code',
         'name',
         'today_date',
@@ -19,6 +18,8 @@ class Employee extends Model
         'department',
         'direct_manager',
         'allowed_loan_limit',
+        'date_of_appointment',
+        'leave_balance',
         'delay_authorization',
         'early_leave_permission',
         'leave_request',
