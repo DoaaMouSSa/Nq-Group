@@ -18,9 +18,8 @@ Route::get('about', function () {
 })->name('about');
 // API routes for Employee
     Route::prefix('employees')->group(function () {
-        Route::get('/', [EmployeeController::class, 'index']);
-        Route::get('{id}', [EmployeeController::class, 'show']);
-        Route::post('/', [EmployeeController::class, 'store']);
+        Route::get('/', [EmployeeController::class, 'get']);
+        Route::get('{id}', [EmployeeController::class, 'getById']);
         Route::put('{id}', [EmployeeController::class, 'update']);
-        Route::delete('{id}', [EmployeeController::class, 'destroy']);
+        Route::delete('{id}', [EmployeeController::class, 'delete']);
 });
