@@ -16,7 +16,6 @@ Route::get('contact', function () {
 Route::get('about', function () {
     return view('aboutUS');
 })->name('about');
-// API routes for Employee
     Route::prefix('employees')->group(function () {
         Route::get('/', [EmployeeController::class, 'get']);
         Route::get('{id}', [EmployeeController::class, 'getById']);
