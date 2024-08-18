@@ -26,40 +26,51 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        $data=$request->validate([
+        $request->validate([
+            'employee_code' => 'required|unique:employees',
+            'name' => 'required|string|max:255',
+            'today_date' => 'required|date',
+            'job_title' => 'required|string|max:255',
+            'department' => 'required|string|max:255',
+            'direct_manager' => 'required|string|max:255',
+            'allowed_loan_limit' => 'required|numeric',
             'date_of_appointment' => 'required|date',
             'leave_balance' => 'required|integer',
-            'employee_code' => 'required|string|unique:employees',
-            'name' => 'required|string',
-            'today_date' => 'required|date',
-            'job_title' => 'required|string',
-            'department' => 'required|string',
-            'direct_manager' => 'nullable|string',
-            'allowed_loan_limit' => 'nullable|numeric',
-            'delay_authorization' => 'required|boolean',
-            'early_leave_permission' => 'required|boolean',
-            'leave_request' => 'required|boolean',
-            'loan_request' => 'required|boolean',
-            'salary_statement_request' => 'required|boolean',
-            'mission_authorization' => 'required|boolean',
+            'delay_authorization' => 'boolean',
+            'early_leave_permission' => 'boolean',
+            'leave_request' => 'boolean',
+            'loan_request' => 'boolean',
+            'salary_statement_request' => 'boolean',
+            'mission_authorization' => 'boolean',
         ]);
 
-        $employee = Employee::create($data);
-        return redirect('admin/employee/index')->with('success', 'Insert Data Success');
-    }
+        Employee::create($request->all());
 
-    public function show($id)
+        return redirect()->route('admin.employees.index')->with('success', 'Employee created successfully.');
+    }
+    public function show(Employee $employee)
     {
-        $employee = Employee::findOrFail($id);
-        return view('single', compact('employee'));
+        return view('admin.employees.show', compact('employee'));
     }
+    // public function show($id)
+    // {
+    //     $employee = Employee::findOrFail($id);
+    //     return view('single', compact('employee'));
+    // }
+ // In app/Http/Controllers/EmployeeController.php
 
-    public function destroy($id)
-    {
-        Employee::where('id', $id)->delete();
-        return redirect('admin/employee/index')->with('danger', 'Delete Data Success');
+public function destroy(Employee $employee)
+{
+    $employee->delete();
+    return redirect()->route('admin.employees.index')->with('success', 'Employee deleted successfully.');
+}
 
-    }
+    // public function destroy($id)
+    // {
+    //     Employee::where('id', $id)->delete();
+    //     return redirect('admin/employee/index')->with('danger', 'Delete Data Success');
+
+    // }
 
 
 }
