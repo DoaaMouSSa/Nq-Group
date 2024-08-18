@@ -44,11 +44,10 @@
                         <td>{{ $employee->name }}</td>
                         <td>{{ $employee->job_title }}</td>
                         <td>{{ $employee->department }}</td>
-                        <td><a href="{{ route('admin.employees.show', $employee->id) }}">Details</a></td>
+                        <td><a href="{{ route('admin.employees.show', $employee->id) }}" class="btn btn-success btn-sm">Details</a></td>
 
                         <td>
-                            <a class="text-success" href="{{ route('admin.employees.edit') }}">Edit</a>
-                        </td>
+                            <a href="{{ route('admin.employees.edit', $employee->id) }}" class="btn btn-warning btn-sm">Edit</a>                        </td>
                         <td>
                             <form id="delete-form-{{ $employee->id }}" action="{{ route('admin.employees.destroy', $employee->id) }}" method="POST" style="display: inline;">
                                 @csrf

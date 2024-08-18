@@ -19,11 +19,6 @@ class EmployeeController extends Controller
         return view('admin.employees.create');
     }
 
-    public function edit($id)
-    {
-        return view('admin.employees.edit', ['id' => $id]);
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -52,25 +47,42 @@ class EmployeeController extends Controller
     {
         return view('admin.employees.show', compact('employee'));
     }
-    // public function show($id)
-    // {
-    //     $employee = Employee::findOrFail($id);
-    //     return view('single', compact('employee'));
-    // }
- // In app/Http/Controllers/EmployeeController.php
 
 public function destroy(Employee $employee)
 {
     $employee->delete();
     return redirect()->route('admin.employees.index')->with('success', 'Employee deleted successfully.');
 }
+public function edit(Employee $employee)
+{
+    return view('admin.employees.edit', compact('employee'));
+}
 
-    // public function destroy($id)
-    // {
-    //     Employee::where('id', $id)->delete();
-    //     return redirect('admin/employee/index')->with('danger', 'Delete Data Success');
+public function update(Request $request, Employee $employee)
+{
+    // Validate the incoming request data
+    $request->validate([
+        'employee_code' => 'required|string|max:255',
+        'name' => 'required|string|max:255',
+        'today_date' => 'required|date',
+        'job_title' => 'required|string|max:255',
+        'department' => 'required|string|max:255',
+        'direct_manager' => 'nullable|string|max:255',
+        'allowed_loan_limit' => 'required|numeric',
+        'date_of_appointment' => 'required|date',
+        'leave_balance' => 'required|numeric',
+        'delay_authorization' => 'required|boolean',
+        'early_leave_permission' => 'required|boolean',
+        'leave_request' => 'required|boolean',
+        'loan_request' => 'required|boolean',
+        'salary_statement_request' => 'required|boolean',
+        'mission_authorization' => 'required|boolean',
+    ]);
 
-    // }
+    $employee->update($request->all());
+
+    return redirect()->route('admin.employees.index')->with('success', 'Employee updated successfully.');
+}
 
 
 }
